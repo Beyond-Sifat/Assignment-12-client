@@ -5,17 +5,19 @@ import Logo from '../Components/Logo/Logo';
 
 const AuthLayouts = () => {
     return (
-        <div className="p-12 bg-base-200">
-            <Logo></Logo>
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className='flex-1 bg-[#FAFDF0]'>
-                    <img
-                        src={Auth}
-                        className="max-w-full rounded-lg"
-                    />
-                </div>
-                <div className='flex-1'>
-                    <Outlet></Outlet>
+        <div className="min-h-screen bg-base-200">
+            <div className="max-w-6xl mx-auto p-8">
+                <Logo></Logo>
+                <div className="flex flex-col lg:flex-row-reverse items-center gap-6 mt-8 bg-white shadow-md rounded-lg overflow-hidden">
+                    <div className='flex-1'>
+                        <img
+                            src={Auth}
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div className='flex-1 p-6'>
+                        <Outlet></Outlet>
+                    </div>
                 </div>
             </div>
         </div>
