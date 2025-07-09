@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SocialLogin from './SocialLogin';
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
-// import axios from 'axios';
+import axios from 'axios';
 
 const Register = () => {
-    const { createUser } = useAuth();
+    const { createUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
+    const [profilePic, setProfilePic] = useState('')
 
     const {
         register,
@@ -16,31 +18,46 @@ const Register = () => {
     } = useForm();
 
     const onSubmit = data => {
-       createUser(data.email, data.password)
-       .then(result =>{
-        console.log(result.user)
-        toast.success("Successfully Register!")
-       })
-       .catch(error=>{
-        console.error(error)
-       })
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
+                navigate('/')
+                toast.success("Successfully Register!")
+
+
+                const userProfile = {
+                    displayName: data.name,
+                    photoURL: profilePic
+                }
+                updateUserProfile(userProfile)
+                    .then(() => {
+                        console.log('updated')
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            })
+
+            .catch(error => {
+                console.error(error)
+            })
     }
 
 
-    
+
     const handleImgUp = async (e) => {
         const image = e.target.files[0]
         console.log(image)
-        // const formData = new FormData()
-        // formData.append('image', image)
-        // const uploadURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_key}`
-        // try {
-        //     const res = await axios.post(uploadURL, formData);
-        //     const imageUrl = res.data?.data?.url; // ✅ Extract just the URL
-        //     setProfilePic(imageUrl); // ✅ Save only the URL string
-        // } catch (err) {
-        //     console.error("Image upload failed", err);
-        // }
+        const formData = new FormData()
+        formData.append('image', image)
+        const uploadURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_key}`
+        try {
+            const res = await axios.post(uploadURL, formData);
+            const imageUrl = res.data?.data?.url; // ✅ Extract just the URL
+            setProfilePic(imageUrl); // ✅ Save only the URL string
+        } catch (err) {
+            console.error("Image upload failed", err);
+        }
     }
 
     return (

@@ -1,10 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router';
+
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from './SocialLogin';
+import useAuth from '../../Hooks/useAuth';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const Login = () => {
+    const { loginUser } = useAuth();
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const {
         register,
@@ -15,10 +21,22 @@ const Login = () => {
 
     const onSubmit = data => {
         console.log(data)
+
+        loginUser(data.email, data.password)
+            .then(result => {
+
+                console.log(result)
+                navigate(location?.state || '/')
+                toast('Login successful')
+            })
+            .catch(error => {
+                console.log(error)
+                toast.error('Something went wrong')
+            })
+
     }
     return (
         <div >
-            <Toaster />
             <div className="card shadow-md bg-base-100 w-full">
                 <div className="card-body">
                     <h1 className="text-3xl font-bold">Please Login</h1>
