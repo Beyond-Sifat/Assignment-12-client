@@ -8,7 +8,7 @@ import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
 import PrivateRoute from "../Routes/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import AddCourts from "../Pages/Dashboard/AddCourts";
+import ManageCourts from "../Pages/Dashboard/ManageCourts";
 
 export const router = createBrowserRouter([
     {
@@ -40,8 +40,8 @@ export const router = createBrowserRouter([
         element : <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
-                path: 'addCourts',
-                element:<AddCourts></AddCourts>
+                path: 'manageCourts',
+                element:<ManageCourts></ManageCourts>
             }
         ]
     },
