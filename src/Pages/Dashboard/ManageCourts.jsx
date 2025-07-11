@@ -18,7 +18,7 @@ const ManageCourts = () => {
     const { data: courts = [], isLoading } = useQuery({
         queryKey: ['courts'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/courts')
+            const res = await axiosSecure.get(`/courts`)
             return res.data
         }
     });
