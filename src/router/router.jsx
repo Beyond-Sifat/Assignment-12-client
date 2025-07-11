@@ -9,6 +9,7 @@ import Register from "../Pages/Authentication/Register";
 import PrivateRoute from "../Routes/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import ManageCourts from "../Pages/Dashboard/ManageCourts";
+import Courts from "../Pages/AllCourts/Courts";
 
 export const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
                 index: true,
                 Component: Home
             },
+            {
+                path:'courts',
+                element:<PrivateRoute><Courts></Courts></PrivateRoute>
+            }
         ]
     },
     {

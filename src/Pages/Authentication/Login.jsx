@@ -5,12 +5,14 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from './SocialLogin';
 import useAuth from '../../Hooks/useAuth';
 import { toast, ToastContainer } from 'react-toastify';
+import useUpdateLastLogin from '../../Hooks/useUpdateLastLogin';
 
 
 const Login = () => {
     const { loginUser } = useAuth();
     const navigate = useNavigate()
     const location = useLocation()
+    const updateLogin = useUpdateLastLogin();
 
     const {
         register,
@@ -23,11 +25,14 @@ const Login = () => {
         console.log(data)
 
         loginUser(data.email, data.password)
-            .then(result => {
-
+            .then(async(result) => {
                 console.log(result)
-                navigate(location?.state || '/')
+
+
+                await updateLogin(result.user.email)
+
                 toast('Login successful')
+                navigate(location?.state || '/')
             })
             .catch(error => {
                 console.log(error)

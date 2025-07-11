@@ -7,9 +7,10 @@ import { useMutation, useQuery, useQueryClient, } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 
 const ManageCourts = () => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
 
     const [openModal, setOpenModal] = useState(false)
+    const [editingCourt, setEditingCourt] = useState(null);
     const axiosSecure = useAxiosSecu();
     const queryClient = useQueryClient();
 
@@ -72,64 +73,94 @@ const ManageCourts = () => {
 
 
         try {
-            const res = await axiosSecure.post('/courts', newCourts);
-            if (res.data.insertedId) {
-                toast.success('Court added successfully')
-                reset();
-                setOpenModal(false);
+            if (editingCourt) {
+                // Update
+                const res = await axiosSecure.put(`/courts/${editingCourt._id}`, newCourts);
+                if (res.data.modifiedCount > 0) {
+                    toast.success('Court updated successfully');
+                }
+            } else {
+                // Add new
+                const res = await axiosSecure.post('/courts', newCourts);
+                if (res.data.insertedId) {
+                    toast.success('Court added successfully');
+                }
             }
+            reset();
+            setEditingCourt(null);
+            setOpenModal(false);
+            queryClient.invalidateQueries(['courts']);
         } catch (error) {
-            console.error(error)
-            toast.error('Failed to add court')
+            console.log(error)
+            toast.error('Operation failed');
         }
-    }
+    };
+
+    const handleEdit = (court) => {
+        setEditingCourt(court);
+        setOpenModal(true);
+        // Prefill the form
+        setValue('name', court.name);
+        setValue('type', court.type);
+        setValue('price', court.price);
+        setValue('image', court.image);
+        setValue('slots', court.slots.join(', '));
+    };
+
+
     return (
-        <div>
+        <div className='p-4 max-w-7xl mx-auto'>
             <Toaster position='top-right' />
 
-            <h2 className='text-center text-3xl md:text-4xl font-bold text-[#1e3c72]'>Manage Courts</h2>
+            <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6'>
+                <h2 className='text-center text-3xl md:text-4xl font-bold text-[#1e3c72]'>Manage Courts</h2>
 
-            <button
-                className="btn btn-success mb-4 "
-                onClick={() => setOpenModal(true)}
-            >
-                <FaPlus className="mr-2" /> Add Court
-            </button>
+                <button
+                    className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+                    onClick={() => {
+                        setEditingCourt(null);
+                        reset();
+                        setOpenModal(true);
+                    }}
+                >
+                    <FaPlus className="mr-2" /> Add Court
+                </button>
+            </div>
 
             {!isLoading ? (
-                <div>
-                    <table className="table w-full">
+                <div className='overflow-x-auto'>
+                    <table className="w-full border-collapse">
                         <thead className="bg-gradient-to-r from-[#1e3c72] to-[#2a5298] text-white">
                             <tr>
-                                <th>#</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Price</th>
-                                <th>Slots</th>
-                                <th>Actions</th>
+                                <th className='p-3 border'>#</th>
+                                <th className='p-3 border'>Image</th>
+                                <th className='p-3 border'>Name</th>
+                                <th className='p-3 border'>Type</th>
+                                <th className='p-3 border'>Price</th>
+                                <th className='p-3 border'>Slots</th>
+                                <th className='p-3 border'>Actions</th>
                             </tr>
                         </thead>
                         <tbody className='text-gray-600'>
                             {courts.map((court, index) => (
                                 <tr key={court._id}>
-                                    <td>{index + 1}</td>
-                                    <td><img src={court.image} alt={court.name} className="w-16 h-12 object-cover rounded" /></td>
-                                    <td>{court.name}</td>
-                                    <td>{court.type}</td>
-                                    <td>{court.price}</td>
-                                    <td>
+                                    <td className='p-2 text-center'>{index + 1}</td>
+                                    <td className='p-2 text-center'><img src={court.image} alt={court.name} className="w-16 h-12 object-cover rounded" /></td>
+                                    <td className='p-2 text-center'>{court.name}</td>
+                                    <td className='p-2 text-center'>{court.type}</td>
+                                    <td className='p-2 text-center'>{court.price}</td>
+                                    <td className='p-2 text-sm'>
                                         <ul className="list-disc pl-4 text-sm">
                                             {court.slots.map((slot, idx) => (
                                                 <li key={idx}>{slot}</li>
                                             ))}
                                         </ul>
                                     </td>
-                                    <td className="flex justify-center gap-2">
-                                        <button className="btn btn-sm btn-error" onClick={() => handleDelete(court._id)}>
+                                    <td className="p-2 text-center space-x-2">
+                                        <button className="bg-red-500 hover:bg-red-600 text-white p-2 rounded" onClick={() => handleDelete(court._id)}>
                                             <FaTrash />
                                         </button>
-                                        <button className="btn btn-sm btn-info">
+                                        <button className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded" onClick={() => handleEdit(court)}>
                                             <FaEdit />
                                         </button>
                                     </td>
@@ -153,7 +184,7 @@ const ManageCourts = () => {
                 openModal && (
                     <dialog id="addCourtModal" className="modal modal-open">
                         <div className='modal-box max-w-md'>
-                            <h3 className="font-bold text-lg mb-4">Add New Court</h3>
+                            <h3 className="font-bold text-lg mb-4">{editingCourt ? "Edit Court" : "Add New Court"}</h3>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div>
                                     <label className="label">Court Name</label>
@@ -220,7 +251,7 @@ const ManageCourts = () => {
                                         Close
                                     </button>
                                     <button type="submit" className="btn btn-primary">
-                                        Add
+                                        {editingCourt ? 'Update' : 'Add'}
                                     </button>
                                 </div>
                             </form>

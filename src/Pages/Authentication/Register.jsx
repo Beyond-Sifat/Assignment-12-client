@@ -5,11 +5,13 @@ import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import axios from 'axios';
+import useAxiosUser from '../../Hooks/useAxiosUser';
 
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
     const [profilePic, setProfilePic] = useState('')
+    const axiosUser = useAxiosUser()
 
     const {
         register,
@@ -18,11 +20,24 @@ const Register = () => {
     } = useForm();
 
     const onSubmit = data => {
-        createUser(data.email, data.password)
-            .then(result => {
+        createUser(data.email, data.password, data.name)
+            .then(async (result) => {
                 console.log(result.user)
                 navigate('/')
                 toast.success("Successfully Register!")
+
+
+
+                const userInfo = {
+                    name: data.name,
+                    email: data.email,
+                    role: 'user',
+                    created_at: new Date().toISOString(),
+                    last_log_in: new Date().toISOString()
+                };
+
+                const res = await axiosUser.post('/users', userInfo)
+                console.log(res.data)
 
 
                 const userProfile = {

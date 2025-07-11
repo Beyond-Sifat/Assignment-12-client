@@ -32,7 +32,9 @@ const DashboardLayout = () => {
                     <div className="mx-2 flex-1 px-2 lg:hidden"><Logo></Logo></div>
                 </div>
                 {/* Page content here */}
-               <Outlet></Outlet>
+              <div className='min-h-[calc(100vw-320px)]'>
+                 <Outlet></Outlet>
+              </div>
                 {/* Page content here */}
             </div>
             <div className="drawer-side">

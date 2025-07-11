@@ -1,14 +1,30 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
+import useAxiosUser from '../../Hooks/useAxiosUser';
 
 const SocialLogin = () => {
-    const {googleLogin} = useAuth();
+    const { googleLogin } = useAuth();
+    const axiosUser = useAxiosUser()
 
-const handleGoogleSignIn = () => {
+    const handleGoogleSignIn = () => {
         googleLogin()
             .then(async (result) => {
+                const user = result.user
                 console.log(result.user);
 
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    role: 'user',  //default role
+                    created_at: new Date().toISOString(),
+                    last_log_in: new Date().toISOString()
+                };
+
+                const res = await axiosUser.post('/users', userInfo)
+                if (!res.data.inserted) {
+                    // ✅ If user already exists, update last_log_in
+                    await axiosUser.put(`/users/${user.email}`);
+                }
             })
             .catch(error => {
                 console.error(error);
