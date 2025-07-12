@@ -32,24 +32,24 @@ const DashboardLayout = () => {
                     <div className="mx-2 flex-1 px-2 lg:hidden"><Logo></Logo></div>
                 </div>
                 {/* Page content here */}
-              <div className='min-h-[calc(100vw-320px)]'>
-                 <Outlet></Outlet>
-              </div>
+                <div className='min-h-[calc(100vw-320px)]'>
+                    <Outlet></Outlet>
+                </div>
                 {/* Page content here */}
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                  <Logo></Logo>
+                    <Logo></Logo>
 
 
-                   <li>
+                    <li>
                         <NavLink to='/dashBoard' className="flex items-center gap-2">
                             <FaHome /> Home
                         </NavLink>
                     </li>
 
-
+                    {/* admin links */}
                     <li>
                         <NavLink to='/dashBoard/manageCourts' className="flex items-center gap-2">
                             <MdSportsTennis /> Manage Courts
@@ -57,22 +57,24 @@ const DashboardLayout = () => {
                     </li>
 
                     <li>
-                        <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
-                            <MdPendingActions /> Pending Bookings
-                        </NavLink>
-                    </li>
-                    <li>
                         <NavLink to='/dashBoard/manageBookings' className="flex items-center gap-2">
-                             <MdAssignmentTurnedIn /> Manage Bookings
+                            <MdAssignmentTurnedIn /> Manage Bookings
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to='/dashBoard/allUsers' className="flex items-center gap-2">
-                             <FaUsers /> All users
+                            <FaUsers /> All users
                         </NavLink>
                     </li>
 
-                    
+
+                    <li>
+                        <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
+                            <MdPendingActions /> Pending Bookings
+                        </NavLink>
+                    </li>
+
+
                 </ul>
             </div>
         </div>
