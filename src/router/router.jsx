@@ -12,6 +12,7 @@ import ManageCourts from "../Pages/Dashboard/ManageCourts";
 import Courts from "../Pages/AllCourts/Courts";
 import PendingBookings from "../Pages/Dashboard/PendingBookings";
 import ManageBookings from "../Pages/Dashboard/ManageBookings";
+import AllUsers from "../Pages/Dashboard/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path: 'manageBookings',
                 element: <ManageBookings></ManageBookings>
+            },
+            {
+                path: 'allUsers',
+                element: <AllUsers></AllUsers>
             },
         ]
     },

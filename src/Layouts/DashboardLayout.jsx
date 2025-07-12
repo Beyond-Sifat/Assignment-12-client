@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import Logo from '../Components/Logo/Logo';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaUsers } from 'react-icons/fa';
 import { MdAssignmentTurnedIn, MdPendingActions, MdSportsTennis } from "react-icons/md";
 
 const DashboardLayout = () => {
@@ -64,6 +64,11 @@ const DashboardLayout = () => {
                     <li>
                         <NavLink to='/dashBoard/manageBookings' className="flex items-center gap-2">
                              <MdAssignmentTurnedIn /> Manage Bookings
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/dashBoard/allUsers' className="flex items-center gap-2">
+                             <FaUsers /> All users
                         </NavLink>
                     </li>
 
