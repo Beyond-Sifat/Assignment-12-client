@@ -10,6 +10,7 @@ import PrivateRoute from "../Routes/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import ManageCourts from "../Pages/Dashboard/ManageCourts";
 import Courts from "../Pages/AllCourts/Courts";
+import PendingBookings from "../Pages/Dashboard/PendingBookings";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'courts',
-                element:<PrivateRoute><Courts></Courts></PrivateRoute>
+                element:<Courts></Courts>
             }
         ]
     },
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
             {
                 path: 'manageCourts',
                 element:<ManageCourts></ManageCourts>
-            }
+            },
+            {
+                path: 'pendingBookings',
+                element:<PendingBookings></PendingBookings>
+            },
         ]
     },
 ]);

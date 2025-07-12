@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import Logo from '../Components/Logo/Logo';
 import { FaHome } from 'react-icons/fa';
-import { MdSportsTennis } from "react-icons/md";
+import { MdPendingActions, MdSportsTennis } from "react-icons/md";
 
 const DashboardLayout = () => {
     return (
@@ -53,6 +53,12 @@ const DashboardLayout = () => {
                     <li>
                         <NavLink to='/dashBoard/manageCourts' className="flex items-center gap-2">
                             <MdSportsTennis /> Manage Courts
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
+                            <MdPendingActions /> Pending Bookings
                         </NavLink>
                     </li>
 

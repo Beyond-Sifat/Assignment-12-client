@@ -148,7 +148,7 @@ const ManageCourts = () => {
                                     <td className='p-2 text-center'><img src={court.image} alt={court.name} className="w-16 h-12 object-cover rounded" /></td>
                                     <td className='p-2 text-center'>{court.name}</td>
                                     <td className='p-2 text-center'>{court.type}</td>
-                                    <td className='p-2 text-center'>{court.price}</td>
+                                    <td className='p-2 text-center'>{court.price}/hr</td>
                                     <td className='p-2 text-sm'>
                                         <ul className="list-disc pl-4 text-sm">
                                             {court.slots.map((slot, idx) => (
