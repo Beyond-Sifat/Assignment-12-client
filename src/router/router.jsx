@@ -11,6 +11,7 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import ManageCourts from "../Pages/Dashboard/ManageCourts";
 import Courts from "../Pages/AllCourts/Courts";
 import PendingBookings from "../Pages/Dashboard/PendingBookings";
+import ManageBookings from "../Pages/Dashboard/ManageBookings";
 
 export const router = createBrowserRouter([
     {
@@ -22,8 +23,8 @@ export const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path:'courts',
-                element:<Courts></Courts>
+                path: 'courts',
+                element: <Courts></Courts>
             }
         ]
     },
@@ -43,15 +44,19 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element : <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 path: 'manageCourts',
-                element:<ManageCourts></ManageCourts>
+                element: <ManageCourts></ManageCourts>
             },
             {
                 path: 'pendingBookings',
-                element:<PendingBookings></PendingBookings>
+                element: <PendingBookings></PendingBookings>
+            },
+            {
+                path: 'manageBookings',
+                element: <ManageBookings></ManageBookings>
             },
         ]
     },

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import Logo from '../Components/Logo/Logo';
 import { FaHome } from 'react-icons/fa';
-import { MdPendingActions, MdSportsTennis } from "react-icons/md";
+import { MdAssignmentTurnedIn, MdPendingActions, MdSportsTennis } from "react-icons/md";
 
 const DashboardLayout = () => {
     return (
@@ -59,6 +59,11 @@ const DashboardLayout = () => {
                     <li>
                         <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
                             <MdPendingActions /> Pending Bookings
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/dashBoard/manageBookings' className="flex items-center gap-2">
+                             <MdAssignmentTurnedIn /> Manage Bookings
                         </NavLink>
                     </li>
 

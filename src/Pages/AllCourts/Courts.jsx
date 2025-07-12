@@ -60,7 +60,7 @@ const Courts = () => {
         };
 
         try {
-            const res = await axiosSecu.post('/bookings', bookingData);
+            const res = await axiosSecu.post(`/bookings`, bookingData);
             if (res.data.insertedId) {
                 Swal.fire({
                     icon: 'success',
