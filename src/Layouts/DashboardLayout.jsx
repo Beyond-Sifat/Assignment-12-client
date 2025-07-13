@@ -3,8 +3,12 @@ import { NavLink, Outlet } from 'react-router';
 import Logo from '../Components/Logo/Logo';
 import { FaHome, FaUsers } from 'react-icons/fa';
 import { MdAssignmentTurnedIn, MdPendingActions, MdSportsTennis } from "react-icons/md";
+import useUserRole from '../Hooks/useUserRole';
 
 const DashboardLayout = () => {
+    const { role, isLoading } = useUserRole();
+    console.log(role)
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -50,6 +54,8 @@ const DashboardLayout = () => {
                     </li>
 
                     {/* admin links */}
+                    {!isLoading && role === 'admin' &&
+                        <>
                     <li>
                         <NavLink to='/dashBoard/manageCourts' className="flex items-center gap-2">
                             <MdSportsTennis /> Manage Courts
@@ -68,16 +74,18 @@ const DashboardLayout = () => {
                     </li>
 
 
+                    </>
+                    }
+
                     <li>
                         <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
                             <MdPendingActions /> Pending Bookings
                         </NavLink>
                     </li>
 
-
-                </ul>
-            </div>
+            </ul>
         </div>
+        </div >
     );
 };
 

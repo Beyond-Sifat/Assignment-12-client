@@ -13,6 +13,8 @@ import Courts from "../Pages/AllCourts/Courts";
 import PendingBookings from "../Pages/Dashboard/PendingBookings";
 import ManageBookings from "../Pages/Dashboard/ManageBookings";
 import AllUsers from "../Pages/Dashboard/AllUsers";
+import Forbidden from "../Pages/Forbidden/Forbidden";
+import AdminRoute from "../Routes/AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: 'forbidden',
+                Component: Forbidden,
             },
             {
                 path: 'courts',
@@ -49,19 +55,19 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'manageCourts',
-                element: <ManageCourts></ManageCourts>
+                element: <AdminRoute><ManageCourts></ManageCourts></AdminRoute>
+            },
+            {
+                path: 'manageBookings',
+                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>
+            },
+            {
+                path: 'allUsers',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'pendingBookings',
                 element: <PendingBookings></PendingBookings>
-            },
-            {
-                path: 'manageBookings',
-                element: <ManageBookings></ManageBookings>
-            },
-            {
-                path: 'allUsers',
-                element: <AllUsers></AllUsers>
             },
         ]
     },

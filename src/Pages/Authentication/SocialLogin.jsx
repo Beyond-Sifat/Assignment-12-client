@@ -1,16 +1,19 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosUser from '../../Hooks/useAxiosUser';
+import { useNavigate } from 'react-router';
 
 const SocialLogin = () => {
     const { googleLogin } = useAuth();
     const axiosUser = useAxiosUser()
+    const navigate = useNavigate()
 
     const handleGoogleSignIn = () => {
         googleLogin()
             .then(async (result) => {
                 const user = result.user
                 console.log(result.user);
+                navigate('/')
 
                 const userInfo = {
                     name: user.displayName,

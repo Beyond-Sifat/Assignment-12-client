@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import useAxiosUser from '../../Hooks/useAxiosUser';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../Components/Loading';
+import useAxiosSecu from '../../Hooks/useAxiosSecu';
 
 const AllUsers = () => {
 
-    const axiosUser = useAxiosUser()
+    const axiosSecure = useAxiosSecu()
     const [search, setSearch] = useState('')
 
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosUser.get('/users');
+            const res = await axiosSecure.get('/users');
             return res.data
         }
     })

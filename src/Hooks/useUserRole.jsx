@@ -15,7 +15,10 @@ const useUserRole = () => {
             return res.data; // { role: 'admin' } etc.
         },
     })
-    return { role: roleData?.role, isLoading, refetch }
+    return {
+        role: roleData?.role || 'user',
+        isLoading, refetch
+    }
 };
 
 export default useUserRole;
