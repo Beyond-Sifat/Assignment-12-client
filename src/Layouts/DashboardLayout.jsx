@@ -72,18 +72,18 @@ const DashboardLayout = () => {
                             </li>
 
 
-                            <li>
+                            {/* <li>
                                 <NavLink to='/dashBoard/manageMembers' className="flex items-center gap-2">
                                     <MdRememberMe /> Manage Members
                                 </NavLink>
-                            </li>
+                            </li> */}
 
 
-                            <li>
+                            {/* <li>
                                 <NavLink to='/dashBoard/manageBookings' className="flex items-center gap-2">
                                     <GiConfirmed /> Manage Bookings
                                 </NavLink>
-                            </li>
+                            </li> */}
 
 
                             <li>
@@ -91,7 +91,7 @@ const DashboardLayout = () => {
                                     <FaUsers /> All users     {/* complete */}
                                 </NavLink>
                             </li>
-                            <li>
+                            {/* <li>
                                 <NavLink to='/dashBoard/manageCoupons' className="flex items-center gap-2">
                                     <RiCoupon2Fill /> Manage Coupons
                                 </NavLink>
@@ -100,11 +100,13 @@ const DashboardLayout = () => {
                                 <NavLink to='/dashBoard/ announcement' className="flex items-center gap-2">
                                     <TfiAnnouncement /> Announcement
                                 </NavLink>
-                            </li>
+                            </li> */}
 
 
                         </>
                     }
+
+                    
 
 
 
