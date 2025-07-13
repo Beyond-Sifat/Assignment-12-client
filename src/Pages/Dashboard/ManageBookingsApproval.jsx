@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../../Components/Loading';
 import { FaClock } from 'react-icons/fa';
 
-const ManageBookings = () => {
+const ManageBookingsApproval = () => {
 
     const axiosSecure = useAxiosSecu();
 
@@ -61,4 +61,4 @@ const ManageBookings = () => {
     );
 };
 
-export default ManageBookings;
+export default ManageBookingsApproval;

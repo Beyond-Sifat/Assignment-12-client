@@ -11,10 +11,10 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import ManageCourts from "../Pages/Dashboard/ManageCourts";
 import Courts from "../Pages/AllCourts/Courts";
 import PendingBookings from "../Pages/Dashboard/PendingBookings";
-import ManageBookings from "../Pages/Dashboard/ManageBookings";
 import AllUsers from "../Pages/Dashboard/AllUsers";
 import Forbidden from "../Pages/Forbidden/Forbidden";
 import AdminRoute from "../Routes/AdminRoute";
+import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval";
 
 export const router = createBrowserRouter([
     {
@@ -58,8 +58,8 @@ export const router = createBrowserRouter([
                 element: <AdminRoute><ManageCourts></ManageCourts></AdminRoute>
             },
             {
-                path: 'manageBookings',
-                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute> 
+                path: 'manageBookingsApproval',
+                element: <AdminRoute><ManageBookingsApproval></ManageBookingsApproval></AdminRoute> 
             },
             {
                 path: 'allUsers',
