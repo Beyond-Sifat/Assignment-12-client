@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'manageBookings',
-                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>
+                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute> 
             },
             {
                 path: 'allUsers',
