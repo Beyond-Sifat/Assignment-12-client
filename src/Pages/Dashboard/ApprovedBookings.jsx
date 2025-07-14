@@ -1,16 +1,18 @@
 import React from 'react';
 import useAxiosSecu from '../../Hooks/useAxiosSecu';
 import useAuth from '../../Hooks/useAuth';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Loading from '../../Components/Loading';
 import { FaCreditCard, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const ApprovedBookings = () => {
 
     const axiosSecure = useAxiosSecu();
     const { user } = useAuth();
     const navigate = useNavigate()
+    const queryClient = useQueryClient();
 
     const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['approved-bookings', user?.email],
@@ -21,8 +23,40 @@ const ApprovedBookings = () => {
     })
 
 
+
     const handlePay = (id) => {
         navigate(`/dashBoard/paymentForm/${id}`)
+    }
+
+
+    const mutationDelete = useMutation({
+        mutationFn: async (id) => {
+            const res = await axiosSecure.delete(`/bookings/${id}`);
+            return res.data;
+        },
+        onSuccess: ()=>{
+            Swal.fire("Cancelled", "Booking has been cancelled.", "success")
+            queryClient.invalidateQueries(['approved-bookings', user?.email])
+        },
+        onError:async ()=>{
+            Swal.fire("Error", "Failed to cancel", "error")
+        }
+    })
+
+    const handleDelete = (id)=>{
+         Swal.fire({
+            title: 'Are you sure?',
+            text: 'Do you want to cancel this booking?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, cancel it!',
+        }).then(result =>{
+            if(result.isConfirmed) {
+                mutationDelete.mutate(id)
+            }
+        })
     }
 
     return (
@@ -50,7 +84,7 @@ const ApprovedBookings = () => {
                         </thead>
                         <tbody>
                             {bookings.map((booking) => (
-                                <tr key={booking._id} className="hover:bg-gray-50 text-center">
+                                <tr key={booking._id} className="hover:bg-gray-50 text-center border-b border-dashed">
                                     <td className='p-2 '>{booking.courtName}</td>
                                     <td className='p-2 '>{booking.type}</td>
                                     <td className='p-2 '>{booking.date}</td>
@@ -61,14 +95,15 @@ const ApprovedBookings = () => {
                                             ))}
                                         </ul>
                                     </td>
-                                    <td className="p-2 border">${booking.price}</td>
+                                    <td className="p-2">${booking.price}</td>
                                     {/* <td className='p-2 '></td> */}
                                     <td className='p-2 flex justify-center gap-2'>
                                         <button className='btn btn-sm btn-primary'
                                             onClick={() => handlePay(booking._id)}>
                                             <FaCreditCard className="mr-1" /> Pay
                                         </button>
-                                        <button className='btn btn-sm btn-error'>
+                                        <button className='btn btn-sm btn-error'
+                                        onClick={()=> handleDelete(booking._id)}>
                                             <FaTrash className="mr-1" /> Cancel
                                         </button>
                                     </td>
