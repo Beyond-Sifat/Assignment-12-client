@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import Logo from '../Components/Logo/Logo';
-import { FaHome, FaUsers } from 'react-icons/fa';
-import { MdAssignmentTurnedIn, MdPendingActions, MdRememberMe, MdSportsTennis } from "react-icons/md";
+import { FaCreditCard, FaHome, FaUsers } from 'react-icons/fa';
+import { MdAssignmentTurnedIn, MdCheckCircle, MdPendingActions, MdRememberMe, MdSportsTennis } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { TfiAnnouncement } from "react-icons/tfi";
@@ -117,6 +117,18 @@ const DashboardLayout = () => {
                             <li>
                                 <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
                                     <MdPendingActions /> Pending Bookings   
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashBoard/approvedBookings' className="flex items-center gap-2">
+                                  <MdCheckCircle/> Approved Bookings   
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashBoard/paymentForm' className="flex items-center gap-2">
+                                  <FaCreditCard/> Payment  
                                 </NavLink>
                             </li>
 

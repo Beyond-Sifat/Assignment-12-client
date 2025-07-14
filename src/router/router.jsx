@@ -15,6 +15,10 @@ import AllUsers from "../Pages/Dashboard/AllUsers";
 import Forbidden from "../Pages/Forbidden/Forbidden";
 import AdminRoute from "../Routes/AdminRoute";
 import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval";
+import ManageMembers from "../Pages/Dashboard/ManageMembers";
+import ApprovedBookings from "../Pages/Dashboard/ApprovedBookings";
+import MemberRoutes from "../Routes/MemberRoutes";
+import PaymentForm from "../Pages/Dashboard/PaymentForm";
 
 export const router = createBrowserRouter([
     {
@@ -59,7 +63,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'manageBookingsApproval',
-                element: <AdminRoute><ManageBookingsApproval></ManageBookingsApproval></AdminRoute> 
+                element: <AdminRoute><ManageBookingsApproval></ManageBookingsApproval></AdminRoute>
             },
             {
                 path: 'allUsers',
@@ -69,6 +73,20 @@ export const router = createBrowserRouter([
                 path: 'pendingBookings',
                 element: <PendingBookings></PendingBookings>
             },
+            {
+                path: 'approvedBookings',
+                element: <MemberRoutes><ApprovedBookings></ApprovedBookings></MemberRoutes>
+            },
+            {
+                path: 'paymentForm/:id',
+                element: <MemberRoutes><PaymentForm></PaymentForm></MemberRoutes>
+            },
+
+
+            // {
+            //     path: 'manageMembers',
+            //     element: <AdminRoute><ManageMembers></ManageMembers></AdminRoute>
+            // },
         ]
     },
 ]);
