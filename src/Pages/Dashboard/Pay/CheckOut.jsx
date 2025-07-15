@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import { FaBangladeshiTakaSign } from 'react-icons/fa6';
 import useAxiosSecu from '../../../Hooks/useAxiosSecu';
 import useAuth from '../../../Hooks/useAuth';
-import Swal from 'sweetalert2';
 
-const CheckOut = ({ booking, isLoading }) => {
+
+const CheckOut = ({ booking, isLoading, onClose }) => {
     const stripe = useStripe();
     const elements = useElements();
 
     const { user } = useAuth();
     const [error, setError] = useState('');
+    const [processing, setProcessing] = useState(false);
     const axiosSecure = useAxiosSecu();
 
 
@@ -24,13 +25,14 @@ const CheckOut = ({ booking, isLoading }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!stripe || !elements) {
-            return;
-        }
+        if (!stripe || !elements) return;
+        setProcessing(true);
+
 
 
         const card = elements.getElement(CardElement);
         if (!card) {
+            setProcessing(false);
             return;
         }
 
@@ -41,9 +43,11 @@ const CheckOut = ({ booking, isLoading }) => {
         })
         if (error) {
             setError(error.message)
+            setProcessing(false);
         }
         else {
             setError('');
+
             console.log('method', paymentMethod)
 
 
@@ -69,6 +73,7 @@ const CheckOut = ({ booking, isLoading }) => {
 
             if (result.error) {
                 setError(result.error.message);
+                setProcessing(false);
             } else {
                 setError('');
                 if (result.paymentIntent.status === 'succeeded') {
@@ -85,15 +90,11 @@ const CheckOut = ({ booking, isLoading }) => {
                     };
                     const res = await axiosSecure.post(`/payment`, paymentData)
                     if (res.data.insertedId) {
-                        await Swal.fire({
-                            icon: 'success',
-                            title: 'Payment Successful',
-                            html: `<strong>Transaction ID</strong> <code>${result.paymentIntent.id}</code>`,
-                            confirmButtonText: 'go to My Parcel'
-                        })
+                        onClose();
                     }
 
                 }
+                setProcessing(false);
             }
         }
 
@@ -107,7 +108,21 @@ const CheckOut = ({ booking, isLoading }) => {
         <div>
             <form onSubmit={handleSubmit} className='space-y-4 bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto'>
                 <CardElement />
-                <button type='submit' disabled={!stripe} className='btn btn-primary w-full'>Pay <FaBangladeshiTakaSign />{amount}</button>
+                <button
+                    type='submit'
+                    disabled={!stripe || processing || booking.payment === 'paid'}
+                    className='btn btn-primary w-full'
+                >
+                    {processing
+                        ? 'Processing...'
+                        : booking.payment === 'paid'
+                            ? 'Payment Complete'
+                            : (
+                                <>
+                                    Pay <FaBangladeshiTakaSign />{amount}
+                                </>
+                            )}
+                </button>
                 {
                     error && <p className='text-red-500'>{error}</p>
                 }

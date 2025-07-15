@@ -6,6 +6,7 @@ import { MdAssignmentTurnedIn, MdCheckCircle, MdPendingActions, MdRememberMe, Md
 import { GiConfirmed } from "react-icons/gi";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { TfiAnnouncement } from "react-icons/tfi";
+import { TbPlayFootball } from "react-icons/tb";
 import useUserRole from '../Hooks/useUserRole';
 
 const DashboardLayout = () => {
@@ -128,11 +129,14 @@ const DashboardLayout = () => {
                                 </NavLink>
                             </li>
 
-                            {/* <li>
-                                <NavLink to='/dashBoard/paymentForm' className="flex items-center gap-2">
-                                  <FaCreditCard/> Payment  
+
+                            <li>
+                                <NavLink to='/dashBoard/confirmedBookings' className="flex items-center gap-2">
+                                   <TbPlayFootball/> Confirmed Bookings
                                 </NavLink>
-                            </li> */}
+                            </li>
+
+                            
 
                         </>
                     }

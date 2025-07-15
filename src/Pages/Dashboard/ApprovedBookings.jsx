@@ -34,17 +34,17 @@ const ApprovedBookings = () => {
             const res = await axiosSecure.delete(`/bookings/${id}`);
             return res.data;
         },
-        onSuccess: ()=>{
+        onSuccess: () => {
             Swal.fire("Cancelled", "Booking has been cancelled.", "success")
             queryClient.invalidateQueries(['approved-bookings', user?.email])
         },
-        onError:async ()=>{
+        onError: async () => {
             Swal.fire("Error", "Failed to cancel", "error")
         }
     })
 
-    const handleDelete = (id)=>{
-         Swal.fire({
+    const handleDelete = (id) => {
+        Swal.fire({
             title: 'Are you sure?',
             text: 'Do you want to cancel this booking?',
             icon: 'warning',
@@ -52,8 +52,8 @@ const ApprovedBookings = () => {
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, cancel it!',
-        }).then(result =>{
-            if(result.isConfirmed) {
+        }).then(result => {
+            if (result.isConfirmed) {
                 mutationDelete.mutate(id)
             }
         })
@@ -78,7 +78,7 @@ const ApprovedBookings = () => {
                                 <th className="p-3 border">Date</th>
                                 <th className="p-3 border">Slots</th>
                                 <th className="p-3 border">Price</th>
-                                {/* <th className="p-3 border">Status</th> */}
+                                <th className="p-3 border">Status</th>
                                 <th className="p-3 border">Actions</th>
                             </tr>
                         </thead>
@@ -96,14 +96,24 @@ const ApprovedBookings = () => {
                                         </ul>
                                     </td>
                                     <td className="p-2">${booking.price}</td>
-                                    {/* <td className='p-2 '></td> */}
+                                    <td className='p-2 '>{booking.status}</td>
                                     <td className='p-2 flex justify-center gap-2'>
-                                        <button className='btn btn-sm btn-primary'
-                                            onClick={() => handlePay(booking._id)}>
-                                            <FaCreditCard className="mr-1" /> Pay
-                                        </button>
+                                        {
+                                            booking.payment === 'paid' ? (
+                                                <button className='btn btn-sm btn-success cursor-default' disabled>
+                                                    Paid
+                                                </button>
+                                            ) : (
+                                                <button className='btn btn-sm btn-primary'
+                                                    onClick={() => handlePay(booking._id)}>
+                                                    <FaCreditCard className="mr-1" /> Pay
+                                                </button>
+                                            )
+                                        }
                                         <button className='btn btn-sm btn-error'
-                                        onClick={()=> handleDelete(booking._id)}>
+                                            onClick={() => handleDelete(booking._id)}
+                                            disabled={booking.payment === 'paid'}
+                                        >
                                             <FaTrash className="mr-1" /> Cancel
                                         </button>
                                     </td>
