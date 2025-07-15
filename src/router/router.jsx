@@ -64,26 +64,37 @@ export const router = createBrowserRouter([
                 path: 'manageCourts',
                 element: <AdminRoute><ManageCourts></ManageCourts></AdminRoute>
             },
+
             {
                 path: 'manageBookingsApproval',
                 element: <AdminRoute><ManageBookingsApproval></ManageBookingsApproval></AdminRoute>
             },
+
             {
                 path: 'manageBookings',
                 element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>
             },
+
             {
                 path: 'allUsers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
+
+            {
+                path: 'manageMembers',
+                element: <AdminRoute><ManageMembers></ManageMembers></AdminRoute>
+            },
+
             {
                 path: 'pendingBookings',
                 element: <PendingBookings></PendingBookings>
             },
+
             {
                 path: 'approvedBookings',
                 element: <MemberRoutes><ApprovedBookings></ApprovedBookings></MemberRoutes>
             },
+            
             {
                 path: 'paymentForm/:id',
                 element: <MemberRoutes><PaymentForm></PaymentForm></MemberRoutes>
@@ -102,10 +113,6 @@ export const router = createBrowserRouter([
             //     element: <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
             // },
 
-            // {
-            //     path: 'manageMembers',
-            //     element: <AdminRoute><ManageMembers></ManageMembers></AdminRoute>
-            // },
         ]
     },
 ]);

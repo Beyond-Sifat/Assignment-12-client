@@ -85,11 +85,11 @@ const DashboardLayout = () => {
                                 </NavLink>
                             </li>
 
-                            {/* <li>
+                            <li>
                                 <NavLink to='/dashBoard/manageMembers' className="flex items-center gap-2">
                                     <MdRememberMe /> Manage Members
                                 </NavLink>
-                            </li> */}
+                            </li>
 
 
                             <li>
