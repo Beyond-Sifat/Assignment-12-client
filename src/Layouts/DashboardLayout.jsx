@@ -60,17 +60,29 @@ const DashboardLayout = () => {
                     {!isLoading && role === 'admin' &&
                         <>
                             <li>
-                                <NavLink to='/dashBoard/manageCourts' className="flex items-center gap-2">       
+                                <NavLink to='/dashBoard/manageCourts' className="flex items-center gap-2">
                                     <MdSportsTennis /> Manage Courts   {/* complete */}
                                 </NavLink>
                             </li>
 
+                            {/* <li>
+                                <NavLink to='/dashBoard/manageCoupons' className="flex items-center gap-2">
+                                    <RiCoupon2Fill /> Manage Coupons
+                                </NavLink>
+                            </li> */}
+
                             <li>
                                 <NavLink to='/dashBoard/manageBookingsApproval' className="flex items-center gap-2">
-                                    <MdAssignmentTurnedIn /> Manage Booking approvals    {/* half-complete */}
+                                    <MdAssignmentTurnedIn /> Manage Booking approvals    {/* complete */}
                                 </NavLink>
                             </li>
 
+
+                            <li>
+                                <NavLink to='/dashBoard/allUsers' className="flex items-center gap-2">
+                                    <FaUsers /> All users     {/* complete */}
+                                </NavLink>
+                            </li>
 
                             {/* <li>
                                 <NavLink to='/dashBoard/manageMembers' className="flex items-center gap-2">
@@ -79,24 +91,14 @@ const DashboardLayout = () => {
                             </li> */}
 
 
-                            {/* <li>
+                            <li>
                                 <NavLink to='/dashBoard/manageBookings' className="flex items-center gap-2">
                                     <GiConfirmed /> Manage Bookings
                                 </NavLink>
-                            </li> */}
-
-
-                            <li>
-                                <NavLink to='/dashBoard/allUsers' className="flex items-center gap-2">
-                                    <FaUsers /> All users     {/* complete */}
-                                </NavLink>
                             </li>
+
+
                             {/* <li>
-                                <NavLink to='/dashBoard/manageCoupons' className="flex items-center gap-2">
-                                    <RiCoupon2Fill /> Manage Coupons
-                                </NavLink>
-                            </li>
-                            <li>
                                 <NavLink to='/dashBoard/ announcement' className="flex items-center gap-2">
                                     <TfiAnnouncement /> Announcement
                                 </NavLink>
@@ -106,7 +108,7 @@ const DashboardLayout = () => {
                         </>
                     }
 
-                    
+
 
 
 
@@ -116,13 +118,13 @@ const DashboardLayout = () => {
                         <>
                             <li>
                                 <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
-                                    <MdPendingActions /> Pending Bookings   
+                                    <MdPendingActions /> Pending Bookings
                                 </NavLink>
                             </li>
 
                             <li>
                                 <NavLink to='/dashBoard/approvedBookings' className="flex items-center gap-2">
-                                  <MdCheckCircle/> Approved Bookings   
+                                    <MdCheckCircle /> Approved Bookings
                                 </NavLink>
                             </li>
 

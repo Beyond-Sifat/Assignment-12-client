@@ -19,6 +19,8 @@ import ManageMembers from "../Pages/Dashboard/ManageMembers";
 import ApprovedBookings from "../Pages/Dashboard/ApprovedBookings";
 import MemberRoutes from "../Routes/MemberRoutes";
 import PaymentForm from "../Pages/Dashboard/PaymentForm";
+import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons";
+import ManageBookings from "../Pages/Dashboard/Admin/ManageBookings";
 
 export const router = createBrowserRouter([
     {
@@ -61,9 +63,17 @@ export const router = createBrowserRouter([
                 path: 'manageCourts',
                 element: <AdminRoute><ManageCourts></ManageCourts></AdminRoute>
             },
+            // {
+            //     path: 'manageCoupons',
+            //     element: <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
+            // },
             {
                 path: 'manageBookingsApproval',
                 element: <AdminRoute><ManageBookingsApproval></ManageBookingsApproval></AdminRoute>
+            },
+            {
+                path: 'manageBookings',
+                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>
             },
             {
                 path: 'allUsers',
