@@ -93,7 +93,7 @@ const PaymentForm = () => {
                 <div className="fixed inset-0 backdrop-blur-2xl bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white w-full max-w-2xl mx-auto p-6 rounded-lg shadow-lg relative">
                         <h2 className="text-xl font-bold mb-4 text-center text-[#1e3c72]">Enter Card Details</h2>
-                        <Payment></Payment>
+                        <Payment booking={booking} isLoading={isLoading}></Payment>
                         <button
                             onClick={() => setShowModal(false)}
                             className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"

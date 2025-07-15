@@ -4,11 +4,11 @@ import React from 'react';
 import CheckOut from './CheckOut';
 
 
-const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh')
-const Payment = () => {
+const stripePromise = loadStripe(import.meta.env.VITE_payment_key)
+const Payment = ({booking, isLoading}) => {
     return (
         <Elements stripe={stripePromise}>
-            <CheckOut></CheckOut>
+            <CheckOut booking={booking} isLoading={isLoading}></CheckOut>
         </Elements>
     );
 };
