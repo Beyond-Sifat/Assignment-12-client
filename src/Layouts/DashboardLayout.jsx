@@ -101,12 +101,10 @@ const DashboardLayout = () => {
 
 
                             <li>
-                                <NavLink to='/dashBoard/ announcement' className="flex items-center gap-2">
+                                <NavLink to='/dashBoard/makeAnnouncement' className="flex items-center gap-2">
                                     <TfiAnnouncement /> Announcement
                                 </NavLink>
                             </li>
-
-
                         </>
                     }
 
@@ -143,9 +141,6 @@ const DashboardLayout = () => {
                                     <LuReceipt /> Payment History
                                 </NavLink>
                             </li>
-
-
-
                         </>
                     }
 
@@ -161,7 +156,6 @@ const DashboardLayout = () => {
                                     <MdPendingActions /> Pending Bookings
                                 </NavLink>
                             </li>
-
                         </>
                     }
 
