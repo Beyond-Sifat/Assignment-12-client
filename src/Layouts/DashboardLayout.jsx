@@ -9,6 +9,7 @@ import { LuReceipt } from 'react-icons/lu';
 import { TfiAnnouncement } from "react-icons/tfi";
 import { TbPlayFootball } from "react-icons/tb";
 import useUserRole from '../Hooks/useUserRole';
+import { IoIosNotifications } from 'react-icons/io';
 
 const DashboardLayout = () => {
     const { role, isLoading } = useUserRole();
@@ -141,6 +142,12 @@ const DashboardLayout = () => {
                                     <LuReceipt /> Payment History
                                 </NavLink>
                             </li>
+
+                            <li>
+                                <NavLink to='/dashBoard/announcement' className="flex items-center gap-2">
+                                   <IoIosNotifications /> Announcement
+                                </NavLink>
+                            </li>
                         </>
                     }
 
@@ -154,6 +161,13 @@ const DashboardLayout = () => {
                             <li>
                                 <NavLink to='/dashBoard/pendingBookings' className="flex items-center gap-2">
                                     <MdPendingActions /> Pending Bookings
+                                </NavLink>
+                            </li>
+
+
+                            <li>
+                                <NavLink to='/dashBoard/announcement-user' className="flex items-center gap-2">
+                                    <IoIosNotifications /> Announcement
                                 </NavLink>
                             </li>
                         </>

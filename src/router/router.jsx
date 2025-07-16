@@ -24,6 +24,8 @@ import ManageBookings from "../Pages/Dashboard/Admin/ManageBookings";
 import ConfirmedBookings from "../Pages/Dashboard/Member/ConfirmedBookings";
 import PaymentHistory from "../Pages/Dashboard/Member/PaymentHistory";
 import MakeAnnouncement from "../Pages/Dashboard/Admin/MakeAnnouncement";
+import Announcement from "../Pages/Dashboard/Member/Announcement";
+import AnnouncementUser from "../Pages/Dashboard/AnnouncementUser";
 
 export const router = createBrowserRouter([
     {
@@ -99,10 +101,19 @@ export const router = createBrowserRouter([
 
 
 
+
             {
                 path: 'pendingBookings',
                 element: <PrivateRoute><PendingBookings></PendingBookings></PrivateRoute>
             },
+            {
+                path: 'announcement-user',
+                element: <PrivateRoute><AnnouncementUser></AnnouncementUser></PrivateRoute>
+            },
+
+
+
+            
 
             {
                 path: 'approvedBookings',
@@ -125,7 +136,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'announcement',
-                element: <MemberRoutes><PaymentHistory></PaymentHistory></MemberRoutes>
+                element: <MemberRoutes><Announcement></Announcement></MemberRoutes>
             },
 
 

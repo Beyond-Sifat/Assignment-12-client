@@ -150,12 +150,4 @@ const MakeAnnouncement = () => {
 };
 
 export default MakeAnnouncement;
-//  <div key={announcement._id} className='bg-white border-l-4 border-blue-600 p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'>
-//                         <div className='flex items-start gap-3'>
-//                             <div className='flex-1'>
-//                                 <h4 className="text-xl font-semibold text-gray-800">{announcement.title}</h4>
-//                                 <p className="text-gray-700 mt-1">{announcement.message}</p>
-//                                 <p className="text-sm text-gray-500 mt-2 italic">{new Date(announcement.createdAt).toLocaleString()}</p>
-//                             </div>
-//                         </div>
-//                     </div>
+  
