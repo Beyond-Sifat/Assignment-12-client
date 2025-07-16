@@ -123,6 +123,10 @@ export const router = createBrowserRouter([
                 path: 'paymentHistory',
                 element: <MemberRoutes><PaymentHistory></PaymentHistory></MemberRoutes>
             },
+            {
+                path: 'announcement',
+                element: <MemberRoutes><PaymentHistory></PaymentHistory></MemberRoutes>
+            },
 
 
             
