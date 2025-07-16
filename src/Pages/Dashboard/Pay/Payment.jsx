@@ -5,10 +5,10 @@ import CheckOut from './CheckOut';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key)
-const Payment = ({booking, isLoading, onClose}) => {
+const Payment = ({booking, isLoading, onClose, discount}) => {
     return (
         <Elements stripe={stripePromise}>
-            <CheckOut booking={booking} isLoading={isLoading} onClose={onClose}></CheckOut>
+            <CheckOut booking={booking} isLoading={isLoading} onClose={onClose} discount={discount}></CheckOut>
         </Elements>
     );
 };

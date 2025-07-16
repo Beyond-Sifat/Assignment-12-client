@@ -78,7 +78,7 @@ const ApprovedBookings = () => {
                                 <th className="p-3 border">Date</th>
                                 <th className="p-3 border">Slots</th>
                                 <th className="p-3 border">Price</th>
-                                <th className="p-3 border">Status</th>
+                                {/* <th className="p-3 border">Status</th> */}
                                 <th className="p-3 border">Actions</th>
                             </tr>
                         </thead>
@@ -96,7 +96,7 @@ const ApprovedBookings = () => {
                                         </ul>
                                     </td>
                                     <td className="p-2">${booking.price}</td>
-                                    <td className='p-2 '>{booking.status}</td>
+                                    {/* <td className='p-2 '>{booking.status}</td> */}
                                     <td className='p-2 flex justify-center gap-2'>
                                         {
                                             booking.payment === 'paid' ? (

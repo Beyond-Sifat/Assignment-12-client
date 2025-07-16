@@ -84,6 +84,11 @@ export const router = createBrowserRouter([
                 path: 'manageMembers',
                 element: <AdminRoute><ManageMembers></ManageMembers></AdminRoute>
             },
+            
+            {
+                path: 'manageCoupons',
+                element: <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
+            },
 
             {
                 path: 'pendingBookings',
@@ -94,7 +99,7 @@ export const router = createBrowserRouter([
                 path: 'approvedBookings',
                 element: <MemberRoutes><ApprovedBookings></ApprovedBookings></MemberRoutes>
             },
-            
+
             {
                 path: 'paymentForm/:id',
                 element: <MemberRoutes><PaymentForm></PaymentForm></MemberRoutes>
@@ -108,10 +113,6 @@ export const router = createBrowserRouter([
 
 
             
-            // {
-            //     path: 'manageCoupons',
-            //     element: <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
-            // },
 
         ]
     },

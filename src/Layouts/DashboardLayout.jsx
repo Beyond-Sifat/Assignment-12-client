@@ -66,11 +66,11 @@ const DashboardLayout = () => {
                                 </NavLink>
                             </li>
 
-                            {/* <li>
+                            <li>
                                 <NavLink to='/dashBoard/manageCoupons' className="flex items-center gap-2">
                                     <RiCoupon2Fill /> Manage Coupons
                                 </NavLink>
-                            </li> */}
+                            </li>
 
                             <li>
                                 <NavLink to='/dashBoard/manageBookingsApproval' className="flex items-center gap-2">

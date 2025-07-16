@@ -5,7 +5,7 @@ import useAxiosSecu from '../../../Hooks/useAxiosSecu';
 import useAuth from '../../../Hooks/useAuth';
 
 
-const CheckOut = ({ booking, isLoading, onClose }) => {
+const CheckOut = ({ booking, isLoading, onClose, discount }) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -18,9 +18,10 @@ const CheckOut = ({ booking, isLoading, onClose }) => {
     if (isLoading) {
         return '...Loading'
     }
-    const amount = booking.price;
-    const amountInCents = amount * 100;
-    console.log(amountInCents)
+    const originalPrice = booking.price;
+    const discountAmount = discount ? (originalPrice * discount.discount) / 100 : 0;
+    const finalPrice = originalPrice - discountAmount;
+    const amountInCents = Math.round(finalPrice * 100);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,7 +85,10 @@ const CheckOut = ({ booking, isLoading, onClose }) => {
                         bookingId: booking._id,
                         email: user.email,
                         transactionId: result.paymentIntent.id,
-                        price: booking.price,
+                        price: finalPrice,
+                        originalPrice: originalPrice,
+                        discount: discount ? discount.discount : 0,
+                        discountCode: discount ? discount.code : '',
                         method: result.paymentIntent.payment_method_types,
                         date: new Date(),
                     };
@@ -119,7 +123,7 @@ const CheckOut = ({ booking, isLoading, onClose }) => {
                             ? 'Payment Complete'
                             : (
                                 <>
-                                    Pay <FaBangladeshiTakaSign />{amount}
+                                    Pay <FaBangladeshiTakaSign />{finalPrice.toFixed(2)}
                                 </>
                             )}
                 </button>
