@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import Logo from '../Components/Logo/Logo';
-import { FaCreditCard, FaHome, FaUsers } from 'react-icons/fa';
+import { FaHome, FaUsers } from 'react-icons/fa';
 import { MdAssignmentTurnedIn, MdCheckCircle, MdPendingActions, MdRememberMe, MdSportsTennis } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import { RiCoupon2Fill } from "react-icons/ri";
+import { LuReceipt } from 'react-icons/lu';
 import { TfiAnnouncement } from "react-icons/tfi";
 import { TbPlayFootball } from "react-icons/tb";
 import useUserRole from '../Hooks/useUserRole';
@@ -99,11 +100,11 @@ const DashboardLayout = () => {
                             </li>
 
 
-                            {/* <li>
+                            <li>
                                 <NavLink to='/dashBoard/ announcement' className="flex items-center gap-2">
                                     <TfiAnnouncement /> Announcement
                                 </NavLink>
-                            </li> */}
+                            </li>
 
 
                         </>
@@ -132,11 +133,18 @@ const DashboardLayout = () => {
 
                             <li>
                                 <NavLink to='/dashBoard/confirmedBookings' className="flex items-center gap-2">
-                                   <TbPlayFootball/> Confirmed Bookings
+                                    <TbPlayFootball /> Confirmed Bookings
                                 </NavLink>
                             </li>
 
-                            
+
+                            <li>
+                                <NavLink to='/dashBoard/paymentHistory' className="flex items-center gap-2">
+                                    <LuReceipt /> Payment History
+                                </NavLink>
+                            </li>
+
+
 
                         </>
                     }

@@ -44,7 +44,7 @@ const ManageBookings = () => {
                     <table className="w-full border border-gray-300 rounded-lg">
                         <thead className="bg-gradient-to-r from-[#1e3c72] to-[#2a5298] text-white">
                             <tr>
-                                <th className="p-3">ID</th>
+                                {/* <th className="p-3">ID</th> */}
                                 <th className="p-3">Court</th>
                                 <th className="p-3">Type</th>
                                 <th className="p-3">Date</th>
@@ -57,7 +57,7 @@ const ManageBookings = () => {
                         <tbody>
                             {filteredBookings.map((booking) => (
                                 <tr key={booking._id} className="text-center hover:bg-gray-50">
-                                    <td className="p-2">{booking._id}</td>
+                                    {/* <td className="p-2">{booking._id}</td> */}
                                     <td className="p-2">{booking.courtName}</td>
                                     <td className="p-2">{booking.type}</td>
                                     <td className="p-2">{booking.date}</td>

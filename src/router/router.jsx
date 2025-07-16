@@ -22,6 +22,7 @@ import PaymentForm from "../Pages/Dashboard/PaymentForm";
 import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons";
 import ManageBookings from "../Pages/Dashboard/Admin/ManageBookings";
 import ConfirmedBookings from "../Pages/Dashboard/Member/ConfirmedBookings";
+import PaymentHistory from "../Pages/Dashboard/Member/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -109,6 +110,10 @@ export const router = createBrowserRouter([
             {
                 path: 'confirmedBookings',
                 element: <MemberRoutes><ConfirmedBookings></ConfirmedBookings></MemberRoutes>
+            },
+            {
+                path: 'paymentHistory',
+                element: <MemberRoutes><PaymentHistory></PaymentHistory></MemberRoutes>
             },
 
 
