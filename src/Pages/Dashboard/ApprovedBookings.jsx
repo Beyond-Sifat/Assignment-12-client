@@ -16,6 +16,7 @@ const ApprovedBookings = () => {
 
     const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['approved-bookings', user?.email],
+        
         queryFn: async () => {
             const res = await axiosSecure.get(`/approved-bookings?email=${user.email}`);
             return res.data;

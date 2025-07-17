@@ -5,8 +5,10 @@ import { FaEdit, FaPlus, FaSpinner, FaTrash } from 'react-icons/fa';
 import useAxiosSecu from '../../Hooks/useAxiosSecu';
 import { useMutation, useQuery, useQueryClient, } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import useAuth from '../../Hooks/useAuth';
 
 const ManageCourts = () => {
+    const {user} = useAuth()
     const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
 
     const [openModal, setOpenModal] = useState(false)
@@ -17,6 +19,7 @@ const ManageCourts = () => {
 
     const { data: courts = [], isLoading } = useQuery({
         queryKey: ['courts'],
+         enabled: !!user?.accessToken,
         queryFn: async () => {
             const res = await axiosSecure.get(`/admin/courts`)
             return res.data

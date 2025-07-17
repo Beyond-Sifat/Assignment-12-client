@@ -26,6 +26,7 @@ import PaymentHistory from "../Pages/Dashboard/Member/PaymentHistory";
 import MakeAnnouncement from "../Pages/Dashboard/Admin/MakeAnnouncement";
 import Announcement from "../Pages/Dashboard/Member/Announcement";
 import AnnouncementUser from "../Pages/Dashboard/AnnouncementUser";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
+            {
+                index:true,
+                element:<DashboardHome></DashboardHome>
+            },
             {
                 path: 'manageCourts',
                 element: <AdminRoute><ManageCourts></ManageCourts></AdminRoute>
