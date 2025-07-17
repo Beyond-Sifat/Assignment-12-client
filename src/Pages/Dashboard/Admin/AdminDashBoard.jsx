@@ -40,7 +40,7 @@ const AdminDashBoard = () => {
             </div>
 
             <div className='flex flex-col md:flex-row justify-between gap-6'>
-                <div className='flex-1 bg-gray-50 p-4 rounded-lg shadow text-center'>
+                <div className='flex-1 bg-gray-200 p-4 rounded-lg shadow text-center'>
                     <h4 className="text-lg font-semibold mb-2">User Roles</h4>
                     {loadingRoles ? (<p>Loading Roles...</p>) : (
                         roleCountsData.map((roleCounts, idx) => (
@@ -51,7 +51,7 @@ const AdminDashBoard = () => {
                     )}
                 </div>
 
-                <div className='flex-1 bg-gray-100 p-4 rounded-lg shadow text-center'>
+                <div className='flex-1 bg-gray-200 p-4 rounded-lg drop-shadow-xl text-center'>
                     <h4 className='text-lg font-semibold mb-2'>Court Count</h4>
 
                     {loadingCourts ? (

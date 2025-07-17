@@ -11,6 +11,9 @@ import Swal from 'sweetalert2';
 const Courts = () => {
     const axiosSecu = useAxiosSecu();
     const [bookingInfo, setBookingInfo] = useState(null);
+    // const [bookingInfo, setBookingInfo] = useState(null);
+
+
     const navigate = useNavigate();
     const { user } = useAuth();
 

@@ -53,11 +53,11 @@ const DashboardLayout = () => {
                     <Logo></Logo>
 
 
-                    <li>
+                    {/* <li>
                         <NavLink to='/dashBoard' className="flex items-center gap-2">
                             <FaHome /> Home
                         </NavLink>
-                    </li>
+                    </li> */}
 
                     {/* admin links */}
                     {!isLoading && role === 'admin' &&
