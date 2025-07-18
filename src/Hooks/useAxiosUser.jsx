@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const axiosUser = axios.create({
-    baseURL: `http://localhost:3000`
+    baseURL: `https://assignment-12-server-ten-brown.vercel.app`
 })
 
 const useAxiosUser = () => {

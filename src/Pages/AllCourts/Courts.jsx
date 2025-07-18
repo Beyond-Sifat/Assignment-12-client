@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 const Courts = () => {
     const axiosSecu = useAxiosSecu();
     const [bookingInfo, setBookingInfo] = useState(null);
-    // const [bookingInfo, setBookingInfo] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+
 
 
     const navigate = useNavigate();
@@ -25,6 +26,39 @@ const Courts = () => {
             return res.data
         }
     })
+
+
+
+    //pagination
+    const { data: courtCountData = {} } = useQuery({
+        queryKey: ['courtCount'],
+        queryFn: async () => {
+            const res = await axiosSecu.get(`/courts/count`);
+            return res.data;
+        }
+    })
+
+    const itemsPerPage = 6;
+
+    const totalCourts = courtCountData?.total || 0;
+    const totalPages = Math.ceil(totalCourts / itemsPerPage)
+
+
+    const paginatedCourts = courts.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    )
+
+    // console.log(paginatedCourts)
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
+
+
 
     const handleBook = (court) => {
         if (!user) {
@@ -93,28 +127,53 @@ const Courts = () => {
                     <Loading></Loading>
                 </div>
             ) : (
-                <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-                    {courts.map((court) => (
-                        <div key={court._id} className="rounded-xl shadow-md border hover:shadow-lg transition duration-300 bg-white">
-                            <img
-                                src={court.image}
-                                alt={court.name}
-                                className="h-48 w-full object-cover rounded-t-xl"
-                            />
-                            <div className="p-4 space-y-3">
-                                <h3 className="text-xl font-semibold text-gray-800">{court.name}</h3>
-                                <p className="text-sm text-gray-600">Type: {court.type}</p>
+                <>
+                    <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                        {paginatedCourts.map((court) => (
+                            <div key={court._id} className="rounded-xl shadow-md hover:shadow-lg transition duration-300 bg-white">
+                                <img
+                                    src={court.image}
+                                    alt={court.name}
+                                    className="h-48 w-full object-cover rounded-t-xl"
+                                />
+                                <div className="p-4 space-y-3">
+                                    <h3 className="text-xl font-semibold text-gray-800">{court.name}</h3>
+                                    <p className="text-sm text-gray-600">Type: {court.type}</p>
 
-                                <button
-                                    onClick={() => handleBook(court)}
-                                    className="btn btn-primary btn-block mt-4"
-                                >
-                                    Book Now
-                                </button>
+                                    <button
+                                        onClick={() => handleBook(court)}
+                                        className="btn btn-primary btn-block mt-4"
+                                    >
+                                        Book Now
+                                    </button>
+                                </div>
                             </div>
+                        ))}
+                    </div>
+
+                    {totalPages > 1 && (
+                        <div className='mt-8 flex justify-center gap-2'>
+
+
+                            <button onClick={() => handlePageChange(currentPage - 1)}
+                                className="btn btn-sm" disabled={currentPage === 1}>Prev</button>
+
+                            {[...Array(totalPages).keys()].map(num => (
+                                <button
+                                    key={num + 1}
+                                    onClick={() => handlePageChange(num + 1)}
+                                    className={`btn btn-sm ${currentPage === num + 1 ? 'btn-primary' : 'btn-ghost'}`}
+                                >{num + 1}</button>
+                            ))}
+
+
+                            <button onClick={() => handlePageChange(currentPage + 1)}
+                                className="btn btn-sm" disabled={currentPage === totalPages}>Next</button>
                         </div>
-                    ))}
-                </div>
+                    )}
+                </>
+
+
             )}
 
             {bookingInfo && (

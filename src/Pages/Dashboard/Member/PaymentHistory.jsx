@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecu from '../../../Hooks/useAxiosSecu';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
@@ -8,6 +8,7 @@ const PaymentHistory = () => {
 
     const axiosSecure = useAxiosSecu();
     const { user } = useAuth();
+    const [view, setView] = useState('table')
 
     const { data: payments = [], isLoading } = useQuery({
         queryKey: ['paymentHistory', user?.email],
@@ -24,9 +25,16 @@ const PaymentHistory = () => {
         <div className='max-w-7xl mx-auto px-4 py-8'>
             <h2 className="text-3xl text-center font-bold mb-6 text-[#1e3c72]">Payment History</h2>
 
+            <div className='text-center mb-4'>
+                <button onClick={() => setView(view === 'table' ? 'card' : 'table')}
+                    className='btn btn-sm btn-outline btn-primary'>
+                    Switch to {view === 'table' ? 'Card' : 'Table'}
+                </button>
+            </div>
+
             {payments.length === 0 ? (
                 <p className="text-center text-gray-500">No Payment History Found</p>
-            ) : (
+            ) : view === 'table' ? (
                 <div className='overflow-x-auto'>
                     <table className='w-full text-sm md:text-base'>
                         <thead className="bg-gradient-to-r from-[#1e3c72] to-[#2a5298] text-white">
@@ -61,6 +69,27 @@ const PaymentHistory = () => {
                             ))}
                         </tbody>
                     </table>
+                </div>
+            ) : (
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                    {payments.map((payment, idx) => (
+                        <div key={payment._id} className="card border p-4 shadow-md">
+                            <h3 className='text-lg font-semibold mb-1 text-[#1e3c72]'>
+                                #{idx + 1} - {payment.transactionId}</h3>
+
+                            <p><span className='font-medium'>Amount Paid:</span><span className='text-green-600 font-semibold'>{payment.price}</span></p>
+                            <p><span className='font-medium'>Original Price:</span><span className='line-through text-gray-500'>{payment.originalPrice}</span></p>
+                            <p><span className='font-medium'>Discount</span>{payment.discount || 0}%</p>
+                            <p><span className='font-medium'>Discount Code</span> {payment.discountCode || 'N/A'}</p>
+                            <p><span className='font-medium'>Method</span> {payment.method?.join(', ')}</p>
+                            <p><span className='font-medium'>Date</span>
+                                {new Date(payment.date).toLocaleString('en-GB', {
+                                    dateStyle: 'medium',
+                                    timeStyle: 'short',
+                                })}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

@@ -8,7 +8,7 @@ const Discount = () => {
     const { data: coupons = [], isLoading } = useQuery({
         queryKey: ['coupons'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/coupons/home')
+            const res = await axios.get('https://assignment-12-server-ten-brown.vercel.app/coupons/home')
             return res.data
         }
     })
