@@ -97,7 +97,9 @@ Live Demo
 
 [MongoDB Documentation](https://www.mongodb.com/docs/)
 
-[React Router](https://reactrouter.com/)
+[React Router](https://reactrouter.com)
+
+[Stripe Documentation](https://docs.stripe.com)
 
 📬 Contact
 For questions or feedback, reach out:
