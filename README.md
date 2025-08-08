@@ -91,3 +91,16 @@ Live Demo
 - dotenv
 - stripe
 
+
+📚 Additional Resources
+[Firebase Documentation](https://firebase.google.com/docs)
+
+[MongoDB Documentation](https://www.mongodb.com/docs/)
+
+[React Router](https://reactrouter.com/)
+
+📬 Contact
+For questions or feedback, reach out:
+[LinkedIn](https://www.linkedin.com/in/syed-sifat2004/) 
+
+
