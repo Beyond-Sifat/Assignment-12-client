@@ -8,7 +8,7 @@ import axios from 'axios';
 import useAxiosUser from '../../Hooks/useAxiosUser';
 
 const Register = () => {
-    const { createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile, logOutUser } = useAuth();
     const navigate = useNavigate();
     const [profilePic, setProfilePic] = useState('')
     const axiosUser = useAxiosUser()
@@ -23,8 +23,12 @@ const Register = () => {
         createUser(data.email, data.password, data.name)
             .then(async (result) => {
                 console.log(result.user)
-                navigate('/')
+                // await sendVerificationEmail()
                 toast.success("Successfully Register!")
+
+
+                await logOutUser();
+                navigate('/login');
 
 
 
@@ -40,10 +44,13 @@ const Register = () => {
                 console.log(res.data)
 
 
+
+                
                 const userProfile = {
                     displayName: data.name,
                     photoURL: profilePic
                 }
+                
                 updateUserProfile(userProfile)
                     .then(() => {
                         console.log('updated')
@@ -56,6 +63,9 @@ const Register = () => {
             .catch(error => {
                 console.error(error)
             })
+
+
+        navigate('/')
     }
 
 

@@ -23,8 +23,8 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
-    const updateUserProfile = profileInfo=>{
-        return updateProfile(auth.currentUser,profileInfo)
+    const updateUserProfile = profileInfo => {
+        return updateProfile(auth.currentUser, profileInfo)
     }
 
 
@@ -33,6 +33,10 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
 
+
+    // const sendVerificationEmail = () => {
+    //     return sendEmailVerification(auth.currentUser);
+    // };
 
 
     useEffect(() => {
@@ -55,6 +59,7 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         logOutUser,
         updateUserProfile,
+        // sendVerificationEmail
     }
     return (
         <AuthContext value={userInfo}>

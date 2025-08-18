@@ -2,10 +2,16 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-body{
-     @apply bg-[#dce4f1] text-gray-800;
-     font-family: "Outfit", sans-serif;
+body {
+  @apply bg-[#dce4f1] text-gray-800;
+
+  font-family: "Outfit", sans-serif;
 }
+
+
+/* body {
+  background: linear-gradient(to right, #E9EED9, #CBD2A4, #9A7E6F, #54473F);
+} */
 
 /* .font-outfit {
   font-family: "Outfit", sans-serif;

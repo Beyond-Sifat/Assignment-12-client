@@ -25,8 +25,13 @@ const Login = () => {
         console.log(data)
 
         loginUser(data.email, data.password)
-            .then(async(result) => {
-                console.log(result)
+            .then(async (result) => {
+                // console.log(result)
+                // const user = result.user
+                // if (!user.emailVerified) {
+                //     toast.error('Please verify your email before logging in.');
+                //     return;
+                // }
 
 
                 await updateLogin(result.user.email)

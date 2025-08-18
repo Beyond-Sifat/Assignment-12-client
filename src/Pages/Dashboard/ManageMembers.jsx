@@ -34,7 +34,7 @@ const ManageMembers = () => {
     })
 
 
-    const handleDelete = (id)=>{
+    const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: 'This will remove the member permanently.',
@@ -43,8 +43,8 @@ const ManageMembers = () => {
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!',
-        }).then((result)=>{
-            if(result.isConfirmed){
+        }).then((result) => {
+            if (result.isConfirmed) {
                 mutation.mutate(id)
             }
         })
@@ -66,12 +66,12 @@ const ManageMembers = () => {
                     <p className="text-center text-gray-500">No members found.</p>
                 ) : (
                     <div className="overflow-x-auto">
-                        <table className="table w-full">
+                        <table className="table table-fixed w-full">
                             <thead className="bg-gradient-to-r from-[#1e3c72] to-[#2a5298] text-white">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
+                                    <th className="text-center">Name</th>
+                                    <th className="text-center">Email</th>
+                                    <th className="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,8 +80,8 @@ const ManageMembers = () => {
                                         <td>{member.name || 'N/A'}</td>
                                         <td>{member.email}</td>
                                         <td>
-                                            <button onClick={()=>handleDelete(member._id)}
-                                            className='btn btn-error text-white'><FaTrash /></button>
+                                            <button onClick={() => handleDelete(member._id)}
+                                                className='btn btn-error text-white'><FaTrash /></button>
                                         </td>
                                     </tr>
                                 ))}
