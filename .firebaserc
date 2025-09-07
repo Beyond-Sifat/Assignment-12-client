@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "assignment-12-3c587"
-  }
+  },
+  "targets": {
+    "assignment-12-3c587": {
+      "hosting": {
+        "default": [
+          "assignment-12-3c587"
+        ],
+        "sports-master-sm": [
+          "sports-master-sm"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
